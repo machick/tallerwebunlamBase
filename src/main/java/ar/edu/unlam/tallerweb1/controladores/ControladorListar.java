@@ -24,7 +24,7 @@ public class ControladorListar {
 
     @RequestMapping(path="listar-usuarios/{rol}", method = RequestMethod.GET)
 
-    public ModelAndView listarUsuarios(@PathVariable String rol){
+    public ModelAndView listarUsuariosPorRol(@PathVariable String rol){
 
         ModelMap modelo = new ModelMap();
         modelo.put("ROL_BUSCADO",rol);
@@ -34,10 +34,12 @@ public class ControladorListar {
             modelo.put("ERROR","Ha ocurrido un error inesperado, intente mas tarde.");
         }
         return new ModelAndView("listaUsuarios",modelo);
-
-
-
-
+    }
+    @RequestMapping(path = "listar-usuarios")
+    public ModelAndView listarUsuarios(){
+        ModelMap modelo = new ModelMap();
+        modelo.put("USUARIOS",servicioUsuarios.todosUsuarios());
+        return new ModelAndView("usuarios",modelo);
     }
 
 }

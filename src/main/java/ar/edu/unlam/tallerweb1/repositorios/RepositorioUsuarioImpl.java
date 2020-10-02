@@ -38,21 +38,28 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 				.add(Restrictions.eq("password", usuario.getPassword()))
 				.uniqueResult();
 	}
+	@Override
+	public Usuario consultarUsuarioPorId(Long id){
+    	final Session session = sessionFactory.getCurrentSession();
+		Usuario user = session.get(Usuario.class,id);
+    	return user;
+	}
 
 	@Override
 	public List<Usuario> todos() {
-		Usuario seba = new Usuario();
-		seba .setEmail("seba@ismael.com");
-		seba.setRol("admin");
-
-		Usuario dario = new Usuario();
-		dario.setEmail("dario@moreira.com");
-		dario.setRol("member");
-
-		LinkedList<Usuario> lista = new LinkedList<>();
-		lista.add(seba);
-		lista.add(dario);
-    	return lista;
+		final Session session = sessionFactory.getCurrentSession();
+		List<Usuario> usuarios= session.createCriteria(Usuario.class).list();
+		return usuarios;
 	}
+
+	@Override
+	public void actualizarUsuario( Usuario usuario) {
+		final Session session = sessionFactory.getCurrentSession();
+
+		session.update(usuario);
+
+	}
+
+
 
 }

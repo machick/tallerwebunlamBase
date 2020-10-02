@@ -8,6 +8,12 @@ import java.util.List;
 public interface RepositorioUsuario {
 	
 	Usuario consultarUsuario (Usuario usuario);
-
+	Usuario consultarUsuarioPorId(Long id);
 	List<Usuario> todos();
+	void actualizarUsuario(Usuario usuario);
+
+
 }
+
+
+

@@ -33,4 +33,19 @@ public class ServicioUsuariosImpl implements ServicioUsuarios{
         }
         return listaFiltrada;
     }
+
+    @Override
+    public Usuario buscarUsuarioPorId(Long id) {
+        return repositorioUsuario.consultarUsuarioPorId(id);
+    }
+
+    @Override
+    public List<Usuario> todosUsuarios() {
+        return repositorioUsuario.todos();
+    }
+
+    @Override
+    public void actualizarUsuario(Usuario usuario) {
+        repositorioUsuario.actualizarUsuario(usuario);
+    }
 }

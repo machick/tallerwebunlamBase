@@ -9,4 +9,7 @@ import java.util.List;
 public interface ServicioUsuarios {
 
     List<Usuario> buscarUsuarioConRol(String rol);
+    Usuario buscarUsuarioPorId(Long id);
+    List<Usuario> todosUsuarios();
+    void actualizarUsuario( Usuario usuario );
 }
