@@ -28,6 +28,12 @@ public class ControladorListar {
 
         ModelMap modelo = new ModelMap();
         modelo.put("ROL_BUSCADO",rol);
+        Usuario seba = new Usuario();
+        seba.setEmail("jojo@gmail.com");
+        seba.setPassword("123");
+        seba.setRol("admin");
+        List<Usuario> lista = new LinkedList<>();
+        lista.add(seba);
         try {
             modelo.put("USUARIOS", servicioUsuarios.buscarUsuarioConRol(rol));
         } catch (Exception e){

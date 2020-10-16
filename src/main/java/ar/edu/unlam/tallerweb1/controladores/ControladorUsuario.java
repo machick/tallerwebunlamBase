@@ -19,6 +19,18 @@ public class ControladorUsuario {
     public ControladorUsuario(ServicioUsuarios servicioUsuarios){
         this.servicioUsuarios = servicioUsuarios;
     }
+
+    @RequestMapping(path = "/crear-usuario", method =  RequestMethod.GET)
+    public ModelAndView crearUsuario(@RequestParam("email")String emailRecibido, @RequestParam ("contraseña") String contraseñaRecibida){
+        ModelMap modelo = new ModelMap();
+
+        Usuario usuario = new Usuario();
+
+        modelo.put("email",emailRecibido);
+        modelo.put("contraseña", contraseñaRecibida);
+
+        return new ModelAndView("mostrar-creado",modelo);
+    }
     @RequestMapping("/update/{id}")
     public ModelAndView actualizarUsuario(@PathVariable Long id){
         ModelMap modelo = new ModelMap();
@@ -26,19 +38,13 @@ public class ControladorUsuario {
         Usuario usuario = new Usuario();
         modelo.put("usuarioTraido",usuarioTraido);
         modelo.put("usuario", usuario);
-
-
         if (usuarioTraido==null){
             // anda mal
-
         }else {
 
         }
         return new ModelAndView("actualizarUsuario",modelo);
-
-
     }
-
 
     @RequestMapping(path = "/actualizar-usuario", method = RequestMethod.POST )
     public ModelAndView actualizarUsuarioPost(@RequestParam("id") String id, @RequestParam("email") String email, @RequestParam("password") String password ){
